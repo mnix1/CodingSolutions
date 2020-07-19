@@ -1,7 +1,7 @@
 package mnix.challenge.pal2020;
 
 class EfficientSolutionTest extends SolutionTest {
-    public EfficientSolutionTest() {
+    EfficientSolutionTest() {
         solution = new EfficientSolution();
     }
 }
