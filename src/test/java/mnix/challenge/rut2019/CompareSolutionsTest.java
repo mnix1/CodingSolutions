@@ -11,7 +11,7 @@ class CompareSolutionsTest {
 
     @Test
     void fewSmallElements() {
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 100000; i++) {
             int[] A = generateRandomA(7, 10);
             int K = generateRandomK(A.length);
             System.out.println("A=" + Arrays.toString(A) + ";K=" + K);
@@ -21,7 +21,7 @@ class CompareSolutionsTest {
 
     @Test
     void fewBigElements() {
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 100000; i++) {
             int[] A = generateRandomA(7, 100000);
             int K = generateRandomK(A.length);
             System.out.println("A=" + Arrays.toString(A) + ";K=" + K);
@@ -31,7 +31,7 @@ class CompareSolutionsTest {
 
     @Test
     void muchSmallElements() {
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 100000; i++) {
             int[] A = generateRandomA(15, 10);
             int K = generateRandomK(A.length);
             System.out.println("A=" + Arrays.toString(A) + ";K=" + K);
