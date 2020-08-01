@@ -91,4 +91,29 @@ abstract class SolutionTest {
     void testCase17() {
         assertEquals(solution.solution(new int[]{4, 2, 1, 3, 2, 4, 2, 2, 4}, 0), 2);
     }
+
+    @Test
+    void testCase18() {
+        assertEquals(solution.solution(new int[]{1, 5, 3, 4, 3}, 3), 5);
+    }
+
+    @Test
+    void testCase19() {
+        assertEquals(solution.solution(new int[]{5, 3, 6, 1, 1, 1, 6, 2, 2}, 6), 9);
+    }
+
+    @Test
+    void testCase20() {
+        assertEquals(solution.solution(new int[]{3, 2, 1}, 1), 2);
+    }
+
+    @Test
+    void testCase21() {
+        assertEquals(solution.solution(new int[]{3, 2, 4, 2, 2, 5, 2, 2, 2}, 1), 6);
+    }
+
+    @Test
+    void testCase22() {
+        assertEquals(solution.solution(new int[]{2, 5, 3, 5, 6, 5, 3, 5, 5}, 2), 6);
+    }
 }
