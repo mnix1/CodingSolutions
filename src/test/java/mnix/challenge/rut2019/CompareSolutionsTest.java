@@ -63,22 +63,22 @@ class CompareSolutionsTest {
     @Test
     void solutionPerformance() {
         Duration mostInefficientDuration = Duration.ZERO;
-        int[] mostInefficientA;
+//        int[] mostInefficientA;
         int mostInefficientMaxElement = 0;
         int mostInefficientK = 0;
-        for (int i = 0; i < 20; i++) {
-//            int maxElement = new Random().nextInt(100000) + 1;
-            int maxElement = 2;
+        for (int i = 0; i < 200; i++) {
+            int maxElement = new Random().nextInt(100000) + 1;
+//            int maxElement = 2;
             int[] A = generateRandomAOfSize(100000, maxElement);
-//            int K = generateRandomK(A.length);
-            int K = A.length / 4;
+            int K = generateRandomK(A.length);
+//            int K = A.length / 4;
             Stopwatch timer = Stopwatch.createStarted();
             new EfficientSolution().solution(A, K);
             Stopwatch executionTime = timer.stop();
             System.out.println("solutionPerformance i=" + i + ";K=" + K + ";maxElement=" + maxElement + ";executionTime=" + executionTime);
             if (executionTime.elapsed().compareTo(mostInefficientDuration) > 0) {
                 mostInefficientDuration = executionTime.elapsed();
-                mostInefficientA = A;
+//                mostInefficientA = A;
                 mostInefficientMaxElement = maxElement;
                 mostInefficientK = K;
             }

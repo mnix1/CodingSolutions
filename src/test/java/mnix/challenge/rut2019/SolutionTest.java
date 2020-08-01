@@ -116,4 +116,8 @@ abstract class SolutionTest {
     void testCase22() {
         assertEquals(solution.solution(new int[]{2, 5, 3, 5, 6, 5, 3, 5, 5}, 2), 6);
     }
+    @Test
+    void testCase23() {
+        assertEquals(solution.solution(new int[]{2, 1, 1, 2, 2, 2, 2, 4, 7, 5, 2, 2}, 3), 9);
+    }
 }
