@@ -19,17 +19,16 @@ public class UglyComplicatedSolution implements Solution {
             ageIndexes.put(age, indexes);
         }
         return ageIndexes.values().stream()
-                .parallel()
                 .sorted((a, b) -> -Integer.compare(a.size(), b.size()))
-                .reduce(0, (bestResult, indexes) -> findBestResult(A.length, K, indexes, bestResult), Math::max);
+                .reduce(Math.min(A.length, 1 + K), (best, indexes) -> findBest(A.length, K, indexes, best), Math::max);
     }
 
-    private int findBestResult(int N, int K, List<Integer> indexes, int bestResult) {
-        int bestPossibleResultForAge = indexes.size() + K;
-        if (bestResult >= bestPossibleResultForAge) {
-            return bestResult;
+    private int findBest(int N, int K, List<Integer> indexes, int best) {
+        int bestPossibleResultForAge = Math.min(N, indexes.size() + K);
+        if (best >= bestPossibleResultForAge) {
+            return best;
         }
-        return Math.max(bestResult, new BestResultFinder(N, K, indexes).find());
+        return Math.max(best, new BestResultFinder(N, K, indexes).find());
     }
 
     static class BestResultFinder {

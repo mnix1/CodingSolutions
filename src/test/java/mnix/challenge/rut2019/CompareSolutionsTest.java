@@ -4,6 +4,7 @@ import com.google.common.base.Stopwatch;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -42,11 +43,48 @@ class CompareSolutionsTest {
     @Test
     void aLotOfBigElements() {
         for (int i = 0; i < 1000; i++) {
-            System.out.println("aLotOfBigElements i=" + i);
             int[] A = generateRandomA(100000, 100000);
             int K = generateRandomK(A.length);
+            System.out.println("aLotOfBigElements i=" + i + ";K=" + K);
             assertSameResultWithProfiling(A, K);
         }
+    }
+
+    @Test
+    void aLotOfSmallElements() {
+        for (int i = 0; i < 1000; i++) {
+            int[] A = generateRandomA(100000, 10);
+            int K = generateRandomK(A.length);
+            System.out.println("aLotOfSmallElements i=" + i + ";K=" + K);
+            assertSameResultWithProfiling(A, K);
+        }
+    }
+
+    @Test
+    void solutionPerformance() {
+        Duration mostInefficientDuration = Duration.ZERO;
+        int[] mostInefficientA;
+        int mostInefficientMaxElement = 0;
+        int mostInefficientK = 0;
+        for (int i = 0; i < 20; i++) {
+//            int maxElement = new Random().nextInt(100000) + 1;
+            int maxElement = 2;
+            int[] A = generateRandomAOfSize(100000, maxElement);
+//            int K = generateRandomK(A.length);
+            int K = A.length / 4;
+            Stopwatch timer = Stopwatch.createStarted();
+            new EfficientSolution().solution(A, K);
+            Stopwatch executionTime = timer.stop();
+            System.out.println("solutionPerformance i=" + i + ";K=" + K + ";maxElement=" + maxElement + ";executionTime=" + executionTime);
+            if (executionTime.elapsed().compareTo(mostInefficientDuration) > 0) {
+                mostInefficientDuration = executionTime.elapsed();
+                mostInefficientA = A;
+                mostInefficientMaxElement = maxElement;
+                mostInefficientK = K;
+            }
+        }
+        System.out.println("mostInefficientDuration=" + mostInefficientDuration + ";K=" + mostInefficientK + ";maxElement=" + mostInefficientMaxElement);
+
     }
 
     @Test
@@ -108,13 +146,22 @@ class CompareSolutionsTest {
         Assertions.assertEquals(new EfficientSolution().solution(A, K), naiveSolutionResult);
     }
 
-    private int[] generateRandomA(int N, int maxElement) {
+    private int[] generateRandomAOfSize(int N, int maxElement) {
         Random random = new Random();
-        int[] H = new int[random.nextInt(N) + 1];
-        for (int i = 0; i < H.length; i++) {
-            H[i] = random.nextInt(maxElement) + 1;
+        int[] A = new int[N];
+        for (int i = 0; i < A.length; i++) {
+            A[i] = random.nextInt(maxElement) + 1;
         }
-        return H;
+        return A;
+    }
+
+    private int[] generateRandomA(int maxSize, int maxElement) {
+        Random random = new Random();
+        int[] A = new int[random.nextInt(maxSize) + 1];
+        for (int i = 0; i < A.length; i++) {
+            A[i] = random.nextInt(maxElement) + 1;
+        }
+        return A;
     }
 
     private int generateRandomK(int max) {
