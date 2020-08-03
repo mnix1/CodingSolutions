@@ -60,6 +60,10 @@ abstract class SolutionTest {
     void testCase10() {
         assertEquals(solution.solution(generateA(10, 10)), "1234567891234567891");
     }
+    @Test
+    void testCase11() {
+        assertEquals(solution.solution(generateA(5, 6)), "1789678963");
+    }
 
     private int[][] generateA(int N, int M) {
         int next = 1;

@@ -3,7 +3,7 @@ package mnix.challenge.tec2019;
 import java.util.*;
 import java.util.stream.Collectors;
 
-class NaiveSolution implements Solution {
+class AllSequencesSolution implements Solution {
     @Override
     public String solution(int[][] A) {
         int bestSum = 0;
@@ -76,8 +76,7 @@ class NaiveSolution implements Solution {
                 moves.add(sequence);
             }
         }
-        Collection<int[]> sequences = findSequences(A, moves);
-        return sequences;
+        return findSequences(A, moves);
     }
 
     private Collection<int[]> findSequences(int[][] A, List<int[]> moves) {
